@@ -8,16 +8,46 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 // app.get("/", (req, res) => res.send("Hello World!"));
 
-
+// Main Get request below
 app.get('/posts/:id', (req, res) => {
   const id = req.params.id;
   const post = postBank.find(id);
-  res.send(
-    
-  );
+
+  
+
+  // Findable sites
+  const html = `<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Wizard News</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="news-list">
+      <header><img src="/logo.png"/>Wizard News</header>
+        <div class='news-item'>
+          <p>
+            <span class="news-position">${post.id}. ▲</span>
+            ${post.title}
+            <small>(by ${post.name})</small>
+          </p>
+          <small class="news-info">
+            ${post.upvotes} upvotes | ${post.date}
+          </small>
+          <p>
+            ${post.content} 
+          </p>
+        </div>
+    </div>
+  </body>
+</html>`;
+
+  res.send(html);
 });
 
-app.get("/", (req, res,) => {
+// 24 & 35
+// Single Post Get request Below
+app.get("/", (req, res) => {
   
   const posts = postBank.list();
 
@@ -40,6 +70,9 @@ app.get("/", (req, res,) => {
           <small class="news-info">
             ${post.upvotes} upvotes | ${post.date}
           </small>
+          <p>
+          View Post: <a href="/posts/${post.id}">${post.title}</a>
+          </p>
         </div>`
       ).join('')}
     </div>
