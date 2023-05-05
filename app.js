@@ -12,8 +12,24 @@ app.use(morgan('dev'));
 app.get('/posts/:id', (req, res) => {
   const id = req.params.id;
   const post = postBank.find(id);
-
-  
+//Post NOT found route
+  if (!post.id) {
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Wizard News</title>
+      <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+      <header><img src="/logo.png"/>Wizard News</header>
+      <div class="not-found">
+        <p>404: Page Not Found</p>
+      </div>
+    </body>
+    </html>`
+    res.send(html)
+  } else {
 
   // Findable sites
   const html = `<!DOCTYPE html>
@@ -43,6 +59,7 @@ app.get('/posts/:id', (req, res) => {
 </html>`;
 
   res.send(html);
+}
 });
 
 // 24 & 35
