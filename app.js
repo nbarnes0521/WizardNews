@@ -24,7 +24,7 @@ app.get('/posts/:id', (req, res) => {
     <body>
       <header><img src="/logo.png"/>Wizard News</header>
       <div class="not-found">
-        <p>404: Page Not Found</p>
+        <p>404: Page Not Found :(</p>
       </div>
     </body>
     </html>`
@@ -99,7 +99,7 @@ app.get("/", (req, res) => {
   res.send(html);
 });
 
-const PORT = 1337;
+const { PORT = 1337 } = process.env;
 
 app.listen(PORT, () => {
   console.log(`App listening in port ${PORT}`);
