@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "npm i && npm run build",
+    "build": "npm install && npm run build-assets",
     "start": "node app.js",
     "start:dev": "nodemon app.js",
     "start-with-seed": "npm run seed && npm start"
